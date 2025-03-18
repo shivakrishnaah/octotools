@@ -1,4 +1,4 @@
-name: octotools
+name: octotools_exp
 channels:
   - defaults
 dependencies:

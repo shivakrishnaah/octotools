@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='OctoTools',
-    version='1.0.0',
+    version='1.0.1',
     description='An effective and easy-to-use agentic framework with extendable tools for complex reasoning.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',

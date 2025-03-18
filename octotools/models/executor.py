@@ -23,6 +23,7 @@ class Executor:
         self.num_threads = num_threads
         self.max_time = max_time
         self.max_output_length = max_output_length
+        self.query_cache_dir = ""
 
     def set_query_cache_dir(self, query_cache_dir):
         if query_cache_dir:
