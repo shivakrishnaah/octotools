@@ -3,6 +3,7 @@ import subprocess
 import json
 import os
 import re
+from PIL import Image
 
 # Set up Streamlit UI
 st.title("Architecture Diagram Generator")
@@ -12,10 +13,10 @@ st.write("Upload an image of a system architecture and enter a query to generate
 st.sidebar.header("Select Enabled Tools")
 
 TOOL_OPTIONS = {
-    "Mxgraph_Generator_Tool": "Convert components into an AWS architecture diagram",
     "Relevant_Patch_Zoomer_Tool": "Identify and zoom into relevant areas",
     "Python_Code_Generator_Tool": "Generate Python code for automation",
-    "Image_Captioner_Tool": "Generate textual descriptions of uploaded images"
+    "Image_Captioner_Tool": "Generate textual descriptions of uploaded images",
+    "AWS_Diagram_Generator_Tool": "Generate AWS architecture diagram using Diagrams library"
 }
 
 selected_tools = [
@@ -93,27 +94,22 @@ if st.button("Generate Diagram"):
             error_placeholder.text_area("Errors:", "\n".join(error_logs), height=300, help="Check these errors for debugging.")
 
         process.wait()
-        xml_output = ""
-        xml_pattern = re.compile(r"```xml\n(.*?)\n```", re.DOTALL)
-        match = xml_pattern.search(text)
-        if match:
-                xml_output = match.group(1)
 
-        if xml_output:
-            st.subheader("Generated mxGraph XML:")
-            st.code(xml_output, language="xml")
-
-                    # Embed the mxGraph XML inside an interactive viewer
-            html_code = f"""
-                    <iframe
-                        src="https://www.draw.io/?embed=1&ui=atlas&spin=1&proto=json&saveAndExit=0&noSaveBtn=1&noExitBtn=1&noOpen=1&noSave=1#R{xml_output}"
-                        width="100%"
-                        height="600px"
-                        frameborder="0"
-                    ></iframe>
-                    """
-            st.subheader("Interactive mxGraph Diagram")
-            st.components.v1.html(html_code, height=650)
-
+        # Check for AWS diagram output
+        aws_diagram_pattern = re.compile(r'==>Executed Result:\s*\[\s*{\s*"image":\s*"([^"]+)"\s*}\s*\]')
+        aws_diagram_match = aws_diagram_pattern.search(text)
+        
+        if aws_diagram_match:
+            aws_diagram_path = aws_diagram_match.group(1)
+            if os.path.exists(aws_diagram_path):
+                st.subheader("Generated AWS Architecture Diagram")
+                try:
+                    # Display the AWS diagram
+                    aws_image = Image.open(aws_diagram_path)
+                    st.image(aws_image, caption="AWS Architecture Diagram", use_column_width=True)
+                except Exception as e:
+                    st.error(f"Error displaying AWS diagram: {str(e)}")
+            else:
+                st.error(f"AWS diagram file not found at: {aws_diagram_path}")
         else:
-            st.error("No valid mxGraph XML found in output.json.")
+            st.info("No AWS diagram was generated. Make sure AWS_Diagram_Generator_Tool is selected in the sidebar.")

@@ -180,6 +180,7 @@ class ChatOpenAI(EngineLM, CachedEngine):
         return response
 
     def __call__(self, prompt, **kwargs):
+        # print("Original Prompt Query ", prompt)
         return self.generate(prompt, **kwargs)
 
     def _format_content(self, content: List[Union[str, bytes]]) -> List[dict]:

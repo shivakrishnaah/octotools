@@ -13,7 +13,7 @@ CACHE_DIR="$TASK/cache"
 
 LLM="gpt-4o"
 
-ENABLED_TOOLS="Mxgraph_Generator_Tool,Relevant_Patch_Zoomer_Tool,Python_Code_Generator_Tool,Image_Captioner_Tool"
+ENABLED_TOOLS="Relevant_Patch_Zoomer_Tool,Python_Code_Generator_Tool,Image_Captioner_Tool,AWS_Diagram_Generator_Tool"
 
 INDEX=0
 

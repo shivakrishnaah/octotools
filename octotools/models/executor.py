@@ -223,4 +223,5 @@ Remember: Your <command> field MUST be valid Python code including any necessary
             # Return all the execution results
             return executions
         except Exception as e:
+            print(e,e)
             return f"Error in execute_tool_command: {str(e)}"

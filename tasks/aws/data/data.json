@@ -1,23 +1,16 @@
 [
     {
         "pid": "2",
-        "question": "Given an image of a system architecture, analyze its components and identify equivalent AWS services using AWS documentation. Then, generate an updated architecture diagram in mxGraph XML format, replacing the original components with AWS services and embedding their respective icons. Ensure the generated diagram follows mxGraph standards and includes proper connections between AWS (With proper AWS Icons) services based on the architecture’s logical flow",
-        "image": "images/image.png",
-        "query": "Given an image of a system architecture, analyze its components and identify equivalent AWS services using AWS documentation. Then, generate an updated AWS architecture diagram in mxGraph XML format, replacing the original components with AWS services and embedding their respective icons. Ensure the generated diagram follows mxGraph standards and includes proper connections between AWS services based on the architecture's logical flow",
+        "question": "Given an image of a system architecture, analyze its components and identify equivalent AWS services and create an AWS architecture using diagrams",
+        "image": "images/image1.jpg",
+        "query": "Given an image of a system architecture, analyze its components and identify equivalent AWS services and create an AWS architecture using diagrams",
         "task_id": "e3b27c91-4a68-45fd-9b3f-1f2d6e123456",
         "Question": "Given an image depicting a general system architecture, extract its components and retrieve equivalent AWS services.",
         "level": "2",
         "answer": "EC2 (for servers), RDS (for databases), S3 (for storage), ELB (for load balancing), Lambda (for serverless execution)",
-        "file_name": "image.png",
-        "file_path": "images/image.png",
+        "file_name": "image1.png",
+        "file_path": "images/image1.jpg",
         "split": "validation",
-        "raw_pid": "3",
-        "Annotator Metadata": {
-            "Steps": "1. Extract the technologies and tools mentioned in the image.\n2. Search for the documentation of these tools and technologies alternatives in AWS dcoumentation",
-            "Number of steps": "5",
-            "How long did this take?": "8 minutes",
-            "Tools": "1. Image recognition tools (to identify and parse a figure with three axes)\n2. AWS Documentation Tool to find AWS alternatives for these tools and get their icons",
-            "Number of tools": "4"
-        }
+        "raw_pid": "3"
     }
 ]
